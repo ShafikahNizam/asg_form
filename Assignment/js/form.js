@@ -82,7 +82,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const startDate = new Date(start);
       const endDate = new Date(end);
       if (endDate <= startDate) {
-        setError(form.end, `Tarikh Tamat (${formatDate(end)}) mestilah selepas Tarikh Mula (${formatDate(start)}).`);
+        setError(form.end, "Tarikh Mula mestilah sebelum Tarikh Tamat.");
         if (!firstInvalidInput) firstInvalidInput = form.end;
         isValid = false;
       }
@@ -93,22 +93,25 @@ document.addEventListener("DOMContentLoaded", () => {
       return false;
     }
 
-    const params = new URLSearchParams({
-        name,
-        program,
-        semester,
-        start: formatDate(start),
-        end: formatDate(end),
-        phone,
-        org_name: orgName,
-        org_address: address,
-        postcode,
-        city,
-        state,
-        supervisor,
-        position
-    });
+    // Format the dates to dd/mm/yyyy
+    const formattedStart = formatDate(start);
+    const formattedEnd = formatDate(end);
 
+    const params = new URLSearchParams({
+      name,
+      program,
+      semester,
+      start: formattedStart,
+      end: formattedEnd,
+      phone,
+      org_name: orgName,
+      org_address: address,
+      postcode,
+      city,
+      state,
+      supervisor,
+      position
+    });
 
     window.location.href = "display.html?" + params.toString();
     return true;
