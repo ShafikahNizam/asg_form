@@ -81,12 +81,19 @@ document.addEventListener("DOMContentLoaded", () => {
     if (start && end) {
       const startDate = new Date(start);
       const endDate = new Date(end);
+      const minDuration = 56 * 24 * 60 * 60 * 1000; // 56 hari dalam milisaat
+
       if (endDate <= startDate) {
         setError(form.end, "Tarikh Mula mestilah sebelum Tarikh Tamat.");
         if (!firstInvalidInput) firstInvalidInput = form.end;
         isValid = false;
+      } else if (endDate - startDate < minDuration) {
+        setError(form.end, "Tempoh latihan mestilah sekurang-kurangnya 8 minggu.");
+        if (!firstInvalidInput) firstInvalidInput = form.end;
+        isValid = false;
       }
     }
+
 
     if (!isValid) {
       firstInvalidInput.focus();
