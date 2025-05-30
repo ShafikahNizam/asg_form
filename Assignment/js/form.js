@@ -56,7 +56,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
 
-    check(name, form.name, "Nama Pelajar", /^[a-zA-Z\s]+$/);
+    check(name, form.name, "Nama Pelajar", /^[a-zA-Z\s]+$/, "Hanya huruf dan ruang dibenarkan");
     if (program === "") {
       setError(form.program, "Program diperlukan.");
       if (!firstInvalidInput) firstInvalidInput = form.program;
@@ -65,8 +65,8 @@ document.addEventListener("DOMContentLoaded", () => {
     check(semester, form.semester, "Semester", /^[1-9][0-9]?$/);
     check(start, form.start, "Tarikh Mula");
     check(end, form.end, "Tarikh Tamat");
-    check(phone, form.phone, "No Telefon", /^[0-9\-+ ]+$/);
-    check(orgName, form.org_name, "Nama Organisasi");
+    check(phone, form.phone, "No Telefon", /^[0-9\-+ ]+$/, "Hanya nombor dan simbol + - dibenarkan");
+    check(orgName, form.org_name, "Nama Organisasi", /^[a-zA-Z\s]+$/, "Hanya huruf dan ruang dibenarkan");
     check(address, form.org_address, "Alamat");
     check(postcode, form.postcode, "Poskod", /^[0-9]{5}$/, "Mesti 5 digit");
     check(city, form.city, "Bandar");
@@ -75,8 +75,8 @@ document.addEventListener("DOMContentLoaded", () => {
       if (!firstInvalidInput) firstInvalidInput = form.state;
       isValid = false;
     }
-    check(supervisor, form.supervisor, "Nama Penyelia");
-    check(position, form.position, "Jawatan Penyelia");
+    check(supervisor, form.supervisor, "Nama Penyelia", /^[a-zA-Z\s]+$/, "Hanya huruf dan ruang dibenarkan");
+    check(position, form.position, "Jawatan Penyelia", /^[a-zA-Z\s]+$/, "Hanya huruf dan ruang dibenarkan");
 
     if (start && end) {
       const startDate = new Date(start);
